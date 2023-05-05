@@ -4,6 +4,8 @@
 
 package com.mycompany.ludo;
 
+import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.JFrame;
 
 /**
@@ -16,10 +18,12 @@ public class Ludo {
         System.out.println("Hello World!");
         
         GUI gui = new GUI();
+        Controller controller = new Controller();
         
         JFrame frame = new JFrame("Ludo");
         frame.add(gui);
         frame.pack();
         frame.setVisible(true);
+        
     }
 }
