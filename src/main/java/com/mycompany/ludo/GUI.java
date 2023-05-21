@@ -89,7 +89,7 @@ public class GUI extends javax.swing.JPanel {
         positionMap.put(37, White47);
         positionMap.put(38, White48);
         positionMap.put(39, Red1);
-        positionMap.put(38, White1);
+         positionMap.put(38, White1);
         positionMap.put(39, White2);
         positionMap.put(40, White3);
         positionMap.put(41, White4);
