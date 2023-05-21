@@ -10,7 +10,8 @@ package com.mycompany.ludo;
  */
 public class Piece {
     public String color;
-    public int position;
+    public int position = 0;
+    public int oldPosition = 0;
     public boolean started;
 
     public Piece(String color, int position, boolean started) {
@@ -18,6 +19,13 @@ public class Piece {
         this.position = position;
         this.started = started;
     }
+    
+//    public void newPosition() {
+//        int newPosition = position;
+//        if (newPosition == 1) {
+//            
+//        }
+//    }
 
     @Override
     public String toString() {

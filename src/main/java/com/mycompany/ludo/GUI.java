@@ -4,14 +4,146 @@
  */
 package com.mycompany.ludo;
 
-import java.util.Random;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 /**
  *
  * @author caiotavares
  */
 public class GUI extends javax.swing.JPanel {
+    
+    private Player bluePlayer;
+    
+    public void setBluePlayer(Player bluePlayer) {
+        this.bluePlayer = bluePlayer;
+    }
+    
+    public void setBluePiece(JPanel Panel) {
+        Graphics g = Panel.getGraphics();
+        int panelWidth = Panel.getWidth();
+        int panelHeight = Panel.getHeight();
+        int circleDiameter = Math.min(panelWidth, panelHeight) - 20; // 20 é a margem
+        int circleX = (panelWidth - circleDiameter) / 2;
+        int circleY = (panelHeight - circleDiameter) / 2;
+        g.setColor(Color.BLUE);
+        g.fillOval(circleX, circleY, circleDiameter, circleDiameter);
+    }
+    
+    public void clearBluePiece(JPanel panel) {
+        Graphics g = panel.getGraphics();
+        int panelWidth = panel.getWidth();
+        int panelHeight = panel.getHeight();
+        int circleDiameter = Math.min(panelWidth, panelHeight) - 20; // 20 é a margem
+        int circleX = (panelWidth - circleDiameter) / 2;
+        int circleY = (panelHeight - circleDiameter) / 2;
+        g.clearRect(circleX, circleY, circleDiameter, circleDiameter);
+    }
 
+    
+    public void setNewBluePosition(int position, int oldPosition) {
+        // Mapear os valores de position para os respectivos JPanels
+        Map<Integer, JPanel> positionMap = new HashMap<>();
+        positionMap.put(1, White13);
+        positionMap.put(2, White14);
+        positionMap.put(3, White15);
+        positionMap.put(4, White16);
+        positionMap.put(5, White17);
+        positionMap.put(6, White18);
+        positionMap.put(7, White19);
+        positionMap.put(8, White20);
+        positionMap.put(9, White21);
+        positionMap.put(10, White22);
+        positionMap.put(11, White23);
+        positionMap.put(12, White24);
+        positionMap.put(13, Yellow1);
+        positionMap.put(14, White25);
+        positionMap.put(15, White26);
+        positionMap.put(16, White27);
+        positionMap.put(17, White28);
+        positionMap.put(18, White29);
+        positionMap.put(19, White30);
+        positionMap.put(20, White31);
+        positionMap.put(21, White32);
+        positionMap.put(22, White33);
+        positionMap.put(23, White34);
+        positionMap.put(24, White35);
+        positionMap.put(25, White36);
+        positionMap.put(26, Green1);
+        positionMap.put(27, White37);
+        positionMap.put(28, White38);
+        positionMap.put(29, White39);
+        positionMap.put(30, White40);
+        positionMap.put(31, White41);
+        positionMap.put(32, White42);
+        positionMap.put(33, White43);
+        positionMap.put(34, White44);
+        positionMap.put(35, White45);
+        positionMap.put(36, White46);
+        positionMap.put(37, White47);
+        positionMap.put(38, White48);
+        positionMap.put(39, Red1);
+        positionMap.put(38, White1);
+        positionMap.put(39, White2);
+        positionMap.put(40, White3);
+        positionMap.put(41, White4);
+        positionMap.put(42, White5);
+        positionMap.put(43, White6);
+        positionMap.put(44, White7);
+        positionMap.put(45, White8);
+        positionMap.put(46, White9);
+        positionMap.put(47, White10);
+        positionMap.put(48, Blue2);
+        positionMap.put(49, Blue3);
+        positionMap.put(50, Blue4);
+        positionMap.put(51, Blue5);
+        positionMap.put(52, Blue6);
+        
+        if (position > 53) {
+            JOptionPane.showMessageDialog(null, "Azul Venceu!");
+            return;
+        }
+        
+
+        // Verifica se o valor de position existe no mapa
+        if (positionMap.containsKey(position)) {
+            JPanel panel = positionMap.get(position);
+            if (oldPosition > 0) {
+                JPanel oldPanel = positionMap.get(oldPosition);
+                clearBluePiece(oldPanel);
+            }
+            
+            setBluePiece(panel);
+        } else {
+//            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao mover a peça, jogue o dado novamente!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        
+//        int panelWidth = getWidth();
+//        int panelHeight = getHeight();
+//        
+//        int circleDiameter = Math.min(panelWidth, panelHeight) - 20; // 20 é a margem
+//        
+//        int circleX = (panelWidth - circleDiameter) / 2;
+//        int circleY = (panelHeight - circleDiameter) / 2;
+//        
+//        g.setColor(Color.RED); // Defina a cor do círculo aqui
+//        g.fillOval(circleX, circleY, circleDiameter, circleDiameter);
+//    }
+//    
+//    public Dimension getPreferredSize() {
+//        return new Dimension(200, 200); // Defina as dimensões preferenciais do painel aqui
+//    }
+    
     /**
      * Creates new form GUI
      */
@@ -34,7 +166,7 @@ public class GUI extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
+        BluePiece1 = new javax.swing.JPanel();
         RedStart = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         YellowStart = new javax.swing.JPanel();
@@ -116,6 +248,7 @@ public class GUI extends javax.swing.JPanel {
         ButtonDice = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextDice = new javax.swing.JTextPane();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(959, 612));
@@ -168,16 +301,21 @@ public class GUI extends javax.swing.JPanel {
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
-        jPanel10.setBackground(new java.awt.Color(0, 0, 153));
+        BluePiece1.setBackground(new java.awt.Color(0, 0, 153));
+        BluePiece1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BluePiece1MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout BluePiece1Layout = new javax.swing.GroupLayout(BluePiece1);
+        BluePiece1.setLayout(BluePiece1Layout);
+        BluePiece1Layout.setHorizontalGroup(
+            BluePiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 25, Short.MAX_VALUE)
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        BluePiece1Layout.setVerticalGroup(
+            BluePiece1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
@@ -191,7 +329,7 @@ public class GUI extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BluePiece1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -207,7 +345,7 @@ public class GUI extends javax.swing.JPanel {
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BluePiece1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -1483,6 +1621,13 @@ public class GUI extends javax.swing.JPanel {
         TextDice.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         jScrollPane1.setViewportView(TextDice);
 
+        jToggleButton1.setText("Regras");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1493,11 +1638,17 @@ public class GUI extends javax.swing.JPanel {
                     .addComponent(ButtonDice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jToggleButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addComponent(jToggleButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonDice, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1529,8 +1680,51 @@ public class GUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDiceActionPerformed
+        // Gerar um número aleatório entre 1 e 6 (representando as faces do dado)
+        int resultado = (int) (Math.random() * 6) + 1;
+        TextDice.setText("");
         
+        String resultadoString = Integer.toString(resultado);
+        StyledDocument doc = TextDice.getStyledDocument();
+        
+        Piece bluePlayerPiece1 = bluePlayer.getPiece1();
+        
+        if (bluePlayerPiece1.started == false) {
+            if (resultado == 6) {
+                bluePlayerPiece1.started = true;
+                bluePlayerPiece1.oldPosition = bluePlayerPiece1.position;
+                bluePlayerPiece1.position = 1;
+                setNewBluePosition(bluePlayerPiece1.position, bluePlayerPiece1.oldPosition);
+            }
+        } else {
+            bluePlayerPiece1.oldPosition = bluePlayerPiece1.position;
+            bluePlayerPiece1.position = bluePlayerPiece1.position + resultado;
+            setNewBluePosition(bluePlayerPiece1.position, bluePlayerPiece1.oldPosition);
+        }
+        
+        try {
+            doc.insertString(doc.getLength(), resultadoString, null);
+        } catch (BadLocationException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_ButtonDiceActionPerformed
+
+    private void BluePiece1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BluePiece1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BluePiece1MouseClicked
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        String ludoRegras = "Regras do LUDO:\n" +
+                "- O jogo pode ser jogado por 2 a 4 jogadores.\n" +
+                "- Cada jogador deve possui 4 peças que devem ser movidas ao redor do tabuleiro.\n" +
+                "- O objetivo é mover todas as suas peças até a área final.\n" +
+                "- Os jogadores se revezam lançando um dado para determinar o número de casas a serem avançadas.\n" +
+                "- Ao chegar em uma casa ocupada por uma peça adversária, a peça adversária é enviada de volta à área de início.\n" +
+                "- Vence o jogador que conseguir mover todas as suas peças para a área final primeiro (área central).\n";
+
+        JOptionPane.showMessageDialog(null, ludoRegras, "Regras do Jogo Ludo", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1540,6 +1734,7 @@ public class GUI extends javax.swing.JPanel {
     private javax.swing.JPanel Blue4;
     private javax.swing.JPanel Blue5;
     private javax.swing.JPanel Blue6;
+    private javax.swing.JPanel BluePiece1;
     private javax.swing.JPanel BlueStart;
     private javax.swing.JButton ButtonDice;
     private javax.swing.JPanel Green1;
@@ -1613,9 +1808,6 @@ public class GUI extends javax.swing.JPanel {
     private javax.swing.JPanel Yellow6;
     private javax.swing.JPanel YellowStart;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
@@ -1624,5 +1816,6 @@ public class GUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

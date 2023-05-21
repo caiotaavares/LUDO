@@ -25,5 +25,15 @@ public class Ludo {
         frame.pack();
         frame.setVisible(true);
         
+        Piece bluePlayerPiece1 = new Piece("blue", 0, false);
+        Piece bluePlayerPiece2 = new Piece("blue", 0, false);
+        Piece bluePlayerPiece3 = new Piece("blue", 0, false);
+        Piece bluePlayerPiece4 = new Piece("blue", 0, false);
+        Player bluePlayer = new Player(
+                "blue", 
+                bluePlayerPiece1,bluePlayerPiece2,
+                bluePlayerPiece3, bluePlayerPiece4
+                );
+        gui.setBluePlayer(bluePlayer);
     }
 }

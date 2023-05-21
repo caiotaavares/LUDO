@@ -22,18 +22,4 @@ public class Controller {
         return roll;
     }
     
-    public Player startGame() {
-        
-        Piece bluePlayerPiece1 = new Piece("blue", 0, false);
-        Piece bluePlayerPiece2 = new Piece("blue", 0, false);
-        Piece bluePlayerPiece3 = new Piece("blue", 0, false);
-        Piece bluePlayerPiece4 = new Piece("blue", 0, false);
-        Player bluePlayer = new Player(
-                "blue", 
-                bluePlayerPiece1,bluePlayerPiece2,
-                bluePlayerPiece3, bluePlayerPiece4
-                );
-        
-        return bluePlayer; 
-    }
 }
